@@ -34,7 +34,7 @@ def renew_subscription():
         # Create a subscription to presence changes
         subscription_data = {
             "changeType": "updated",
-            "notificationUrl": "https://wildteamspresence1.azurewebsites.net/api/webhookMSteamsPresenceChange?code=B6v6velmdkfZteTEe2R50tMbiexjlfYG7FRFH9wQuFPSAzFuA9NPgQ==",
+            "notificationUrl": "https://webhookteamspresence.azurewebsites.net/api/webhookMSteamsPresenceChange?code=bg_iS7VfZVJd--UMD9PqhK4o-iB6bXZFUwcuuLaH51e5AzFu8H__Ow==",
             "resource": f"/communications/presences/{user_id}",
             "expirationDateTime": expiration_time_str,
         }
