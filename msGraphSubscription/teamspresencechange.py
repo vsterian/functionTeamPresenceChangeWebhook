@@ -32,7 +32,7 @@ logging.basicConfig(level=logging.INFO)
 def renew_subscription():
     # Get a token for the Graph API scope
     token = credential.get_token('Presence.Read.All')
-    expiration_time = datetime.utcnow() + timedelta(minutes=9)
+    expiration_time = datetime.utcnow() + timedelta(minutes=59)
     expiration_time_str = expiration_time.strftime("%Y-%m-%dT%H:%M:%SZ")
 
     if token:
@@ -75,7 +75,7 @@ def renew_subscription():
         print("Failed to acquire token.")
 
     # Schedule the next renewal
-    threading.Timer(600, renew_subscription).start()
+    threading.Timer(60*60, renew_subscription).start()
 
 # Start the first renewal
 renew_subscription()
