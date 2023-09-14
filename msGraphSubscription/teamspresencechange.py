@@ -5,13 +5,21 @@ import threading
 import logging  # Import the logging module
 from azure.identity import InteractiveBrowserCredential
 from datetime import datetime, timedelta
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Azure AD App credentials
-client_id = '09be529a-eedd-46f5-8af4-be2d7332c552'
-tenant_id = '72f988bf-86f1-41af-91ab-2d7cd011db47'
+client_id = os.environ.get('CLIENT_ID') 
+tenant_id =  os.environ.get('TENANT_ID') 
 
 # MS Teams user id
-user_id = '6e65cc58-12fb-4c0d-befa-147fe89270c9'
+user_id = os.environ.get('USER_ID') 
+
+print(f"CLIENT_ID: {client_id}")
+print(f"TENANT_ID: {tenant_id}")
+print(f"USER_ID: {user_id}")
 
 # Create an instance of InteractiveBrowserCredential
 credential = InteractiveBrowserCredential(client_id=client_id, tenant_id=tenant_id, redirect_uri='http://localhost:8000')
@@ -34,7 +42,7 @@ def renew_subscription():
         # Create a subscription to presence changes
         subscription_data = {
             "changeType": "updated",
-            "notificationUrl": "https://webhookteamspresence.azurewebsites.net/api/webhookMSteamsPresenceChange?code=bg_iS7VfZVJd--UMD9PqhK4o-iB6bXZFUwcuuLaH51e5AzFu8H__Ow==",
+            "notificationUrl": os.environ.get('NOTIFICATION_URL'), 
             "resource": f"/communications/presences/{user_id}",
             "expirationDateTime": expiration_time_str,
         }

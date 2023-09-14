@@ -2,9 +2,10 @@ import logging
 import azure.functions as func
 import requests
 import json
+import os
 
 # Define the WebCoRE piston URI
-webcore_piston_uri = "https://cloud.hubitat.com/api/b29ea9c3-1f17-4fdd-aeb0-e3ad2b8d0daa/apps/42/execute/:db1450619452db181809fba970e073bc:?access_token=20ebb836-563c-46f3-b7fd-ed5a8e46296e"
+webcore_piston_uri = os.environ.get('WEBCORE_PISTON_WEBHOOK')  
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
